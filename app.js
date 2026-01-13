@@ -834,3 +834,27 @@ function login(){
     document.getElementById("loginError").style.display = "block";
   }
 }
+
+// ===== LOGIN SEMPLICE – UTENTE UNICO =====
+
+const LOGIN_USER = "admin";
+const LOGIN_PASS = "1234";
+
+function doLogin() {
+  const u = document.getElementById("loginUser").value;
+  const p = document.getElementById("loginPass").value;
+
+  if (u === LOGIN_USER && p === LOGIN_PASS) {
+    localStorage.setItem("logged", "yes");
+    document.getElementById("loginOverlay").style.display = "none";
+  } else {
+    alert("Credenziali errate");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("logged") === "yes") {
+    const overlay = document.getElementById("loginOverlay");
+    if (overlay) overlay.style.display = "none";
+  }
+});

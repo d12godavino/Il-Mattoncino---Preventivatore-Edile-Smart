@@ -5,22 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IL MATTONCINO S.R.L. - Preventivatore Edile</title>
     <link rel="stylesheet" href="style.css">
-<script src="database.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+    <!-- LOGIN OVERLAY -->
+<div id="loginOverlay" style="
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+">
+  <div style="
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 320px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  ">
+    <h2 style="margin-bottom: 20px;">Accesso Riservato</h2>
 
-<!-- LOGIN -->
-<div id="loginBox" style="max-width:400px;margin:80px auto;padding:20px;border:1px solid #ccc">
-  <h2>Accesso riservato</h2>
-  <input id="username" placeholder="Username" style="width:100%;margin-bottom:10px">
-  <input id="password" type="password" placeholder="Password" style="width:100%;margin-bottom:10px">
-  <button onclick="login()">Accedi</button>
-  <p id="loginError" style="color:red;display:none">Credenziali errate</p>
+    <input id="loginUser" type="text" placeholder="Username"
+      style="width:100%; padding:10px; margin-bottom:10px;">
+
+    <input id="loginPass" type="password" placeholder="Password"
+      style="width:100%; padding:10px; margin-bottom:20px;">
+
+    <button onclick="doLogin()"
+      style="width:100%; padding:10px; background:#1f3e7c; color:#fff; border:none; cursor:pointer;">
+      ACCEDI
+    </button>
+  </div>
 </div>
 
-    <div class="container" id="app" style="display:none">
+    <div class="container">
         <header class="app-header">
             <div class="header-content">
                 <div class="logo-section">
