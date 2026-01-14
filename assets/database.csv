@@ -1,0 +1,26 @@
+﻿Categoria,Sottocategoria,Descrizione,Unità_Misura,Prezzo_Unitario
+OPERE DI DEMOLIZIONE,Demolizioni murarie,Demolizione di tramezzi in laterizio forato sp. 8 cm con carico macerie,mc,45.0
+OPERE DI DEMOLIZIONE,Demolizioni murarie,Demolizione di tramezzi in laterizio forato sp. 12 cm con carico macerie,mc,55.0
+OPERE DI DEMOLIZIONE,Demolizioni murarie,Demolizione di muratura in mattoni pieni,mc,75.0
+OPERE DI DEMOLIZIONE,Demolizioni murarie,Demolizione di muratura in cemento armato (spessore ≤ 20 cm),mc,120.0
+OPERE DI DEMOLIZIONE,Demolizioni murarie,Rimozione intonaco interno ammalorato,mq,8.5
+OPERE DI DEMOLIZIONE,Demolizioni murarie,Rimozione intonaco esterno,mq,11.0
+OPERE DI MURATURA,Tramezzi e murature interne,Costruzione tramezzi in laterizio forato sp. 8 cm,mq,38.0
+OPERE DI MURATURA,Tramezzi e murature interne,Costruzione tramezzi in laterizio forato sp. 12 cm,mq,45.0
+OPERE DI MURATURA,Tramezzi e murature interne,Costruzione muratura in mattoni pieni,mq,62.0
+OPERE DI MURATURA,Tramezzi e murature interne,Costruzione muratura in blocchi di cls alleggerito,mq,58.0
+OPERE DI MURATURA,Murature portanti,Rifacimento muratura portante in laterizio pieno,mq,85.0
+OPERE DI MURATURA,Murature portanti,Realizzazione muratura portante in blocchi strutturali,mq,92.0
+OPERE DI MURATURA,Aperture e chiusure,Realizzazione apertura porta su muratura portante con architrave in acciaio,cad,380.0
+OPERE DI MURATURA,Aperture e chiusure,Chiusura vano porta o finestra con muratura in laterizio,mq,65.0
+OPERE DI INTONACO,Intonaci interni,Intonaco civile interno a base calce,mq,14.0
+OPERE DI INTONACO,Intonaci interni,Intonaco civile interno a base cemento,mq,16.0
+OPERE DI INTONACO,Intonaci interni,Rasatura fine di pareti interne,mq,6.5
+OPERE DI INTONACO,Intonaci esterni,Intonaco esterno tradizionale civile,mq,19.0
+OPERE DI INTONACO,Intonaci esterni,Intonaco esterno armato con rete,mq,28.0
+OPERE DI RIPRISTINO,Ripristini murari,Ripristino murature ammalorate con scuci e cuci,mq,78.0
+OPERE DI RIPRISTINO,Ripristini murari,Consolidamento murature con betoncino strutturale,mq,95.0
+OPERE DI RIPRISTINO,Opere accessorie,Realizzazione controparete in laterizio,mq,42.0
+OPERE DI RIPRISTINO,Opere accessorie,Costruzione muretto divisorio o parapetto,mq,70.0
+OPERE DI FINITURA,Opere murarie finali,Formazione spigoli e angoli murari,ml,7.0
+OPERE DI FINITURA,Opere murarie finali,Preparazione superfici murarie per tinteggiatura,mq,4.5
