@@ -189,6 +189,24 @@ body {
   border-bottom: 2px solid var(--color-border);
 }
 
+.input-with-button {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.input-with-button .form-control {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-with-button .btn {
+  white-space: nowrap;
+  padding: 0 var(--space-12);
+  height: 42px;
+  font-size: var(--font-size-sm);
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
