@@ -9,43 +9,63 @@ let contatorePrevenetivo = parseInt(localStorage.getItem('ultimoNumeroPreventivo
 // Funzione per caricare il database dal CSV
 async function caricaDatabase() {
     try {
-        // Su GitHub Pages il percorso deve essere relativo alla radice del sito
-        // o corretto rispetto alla posizione del file app.js
-        const databasePath = 'attached_assets/database_edile_completo_1759919082996.csv';
-        const response = await fetch(databasePath);
+        const response = await fetch('assets/database.csv');
         
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Impossibile caricare il database (${response.status})`);
         }
         
         const csvText = await response.text();
-        // Gestione corretta dei ritorni a capo per diversi sistemi operativi
-        const lines = csvText.split(/\r?\n/);
+        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
         
-        if (lines.length === 0) return;
+        if (lines.length < 2) {
+            throw new Error('Il file database è vuoto o non valido');
+        }
         
-        // Pulizia degli header (rimozione di eventuali virgolette o spazi extra)
-        const headers = lines[0].split(',').map(h => h.trim().replace(/^["']|["']$/g, ''));
-        
-        databaseEdile = []; // Reset database
+        // Parsing robusto del CSV (gestione virgolette e virgole nelle celle)
+        const parseCSVLine = (text) => {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim().replace(/^"|"$/g, ''));
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim().replace(/^"|"$/g, ''));
+            return result;
+        };
+
+        const headers = parseCSVLine(lines[0]);
+        databaseEdile = [];
         
         for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim();
-            if (line) {
-                // Gestione base dei campi CSV (split semplice, assumendo che i dati non contengano virgole)
-                const values = line.split(',');
+            const values = parseCSVLine(lines[i]);
+            if (values.length >= headers.length) {
                 const obj = {};
                 headers.forEach((header, index) => {
-                    let val = values[index] || '';
-                    obj[header] = val.trim().replace(/^["']|["']$/g, '');
+                    obj[header] = values[index] || '';
                 });
                 databaseEdile.push(obj);
             }
         }
+
+        if (databaseEdile.length === 0) {
+            throw new Error('Nessun dato importato dal database');
+        }
+
         console.log(`✅ Database caricato: ${databaseEdile.length} voci`);
+        return true;
     } catch (error) {
-        console.error('Errore caricamento database:', error);
-        // Fallback: se il fetch fallisce, proviamo un percorso alternativo o mostriamo errore all'utente
+        console.error('ERRORE CRITICO:', error);
+        alert('ERRORE CARICAMENTO DATABASE:\n' + error.message + '\n\nL\'applicazione non può essere avviata senza database.');
+        return false;
     }
 }
 
@@ -88,12 +108,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Permetti invio con tasto Enter
     passwordInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') loginBtn.click(); });
 
-    await caricaDatabase();
-    inizializzaApp();
-    caricaCategorie();
-    impostaDataOggi();
-    impostaEventListeners();
-    console.log('✅ Applicazione pronta!');
+    const dbCaricato = await caricaDatabase();
+    if (dbCaricato) {
+        inizializzaApp();
+        caricaCategorie();
+        impostaDataOggi();
+        impostaEventListeners();
+        console.log('✅ Applicazione pronta!');
+    } else {
+        console.error('❌ Inizializzazione interrotta per mancanza database');
+        // Impedisci interazione
+        document.querySelector('.main-content').style.opacity = '0.3';
+        document.querySelector('.main-content').style.pointerEvents = 'none';
+    }
 });
 
 function inizializzaApp() {
