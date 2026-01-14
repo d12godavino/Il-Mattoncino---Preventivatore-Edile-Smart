@@ -355,6 +355,11 @@ function impostaEventListeners() {
     if (nuovoBtn) {
         nuovoBtn.addEventListener('click', nuovoPreventivo);
     }
+
+    const nuovoBtnTop = document.getElementById('nuovoPreventivoTop');
+    if (nuovoBtnTop) {
+        nuovoBtnTop.addEventListener('click', nuovoPreventivo);
+    }
 }
 
 function aggiungiVocePreventivo() {
