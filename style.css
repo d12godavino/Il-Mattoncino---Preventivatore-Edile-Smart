@@ -503,6 +503,16 @@ body.auth-hidden .main-content {
   .form-group.span-2 {
     grid-column: span 1;
   }
+
+  .input-with-button {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-with-button .form-control,
+  .input-with-button .btn {
+    width: 100%;
+  }
   
   .materiali-row-1,
   .materiali-row-2 {
